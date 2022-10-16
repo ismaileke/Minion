@@ -43,11 +43,9 @@ class MinionInventory {
             $player = $transaction->getPlayer();
             switch ($transaction->getItemClicked()->getId()) {
                 case ItemIds::CHEST:
-                    $player->getNetworkSession()->sendDataPacket(LevelSoundEventPacket::create(LevelSoundEvent::LEVELUP, $player->getPosition()->asVector3(), -1, ":", false, false));
                     $this->minionInv($player);
                 break;
                 case ItemIds::EXPERIENCE_BOTTLE:
-                    $player->getNetworkSession()->sendDataPacket(LevelSoundEventPacket::create(LevelSoundEvent::LEVELUP, $player->getPosition()->asVector3(), -1, ":", false, false));
                     $player->removeCurrentWindow();
                     if ($this->entity->saveNBT()->getInt("level") < 3) {
                         $price = $this->entity->levelPrices[$this->entity->saveNBT()->getString("type")][$this->entity->saveNBT()->getInt("level") + 1];
@@ -63,7 +61,6 @@ class MinionInventory {
                     }
                 break;
                 case ItemIds::WOOL:
-                    $player->getNetworkSession()->sendDataPacket(LevelSoundEventPacket::create(LevelSoundEvent::LEVELUP, $player->getPosition()->asVector3(), -1, ":", false, false));
                     $player->removeCurrentWindow();
                     $player->getWorld()->dropItem($this->entity->getPosition()->asVector3(), VanillaItems::NETHER_STAR()->setNamedTag($this->entity->saveNBT())->setCustomName(TextFormat::AQUA . ucfirst($this->entity->saveNBT()->getString("type")) . " Minion")->setLore([TextFormat::GOLD . $player->getName()]));
                     $this->entity->close();
@@ -82,7 +79,6 @@ class MinionInventory {
         $menu->setListener(function (InvMenuTransaction $transaction) : InvMenuTransactionResult {
             $player = $transaction->getPlayer();
             if ($transaction->getItemClicked()->getId() == ItemIds::CHEST) {
-                $player->getNetworkSession()->sendDataPacket(LevelSoundEventPacket::create(LevelSoundEvent::LEVELUP, $player->getPosition()->asVector3(), -1, ":", false, false));
                 $player->removeCurrentWindow();
                 if (count($this->entity->getInventory()->getContents()) < 2) return $transaction->discard();
                 foreach ($this->entity->getInventory()->getContents() as $index => $item) {
@@ -97,11 +93,9 @@ class MinionInventory {
                     }
                 }
                 $player->sendMessage(TextFormat::GREEN . "Collected items from minion");
-                $player->getNetworkSession()->sendDataPacket(LevelSoundEventPacket::create(LevelSoundEvent::CHARGE, $player->getPosition()->asVector3(), -1, ":", false, false));
             }
             return $transaction->discard();
         });
         $menu->send($player);
     }
 }
-

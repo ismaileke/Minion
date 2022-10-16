@@ -2,13 +2,13 @@
 <project version="4">
   <component name="PhpIncludePathManager">
     <include_path>
-      <path value="$PROJECT_DIR$/../../PocketMine-MP-4.8.1" />
       <path value="$PROJECT_DIR$/../../NBT-stable" />
       <path value="$PROJECT_DIR$/../../BinaryUtils-stable" />
       <path value="$PROJECT_DIR$/../../BedrockProtocol-master (1)" />
       <path value="$PROJECT_DIR$/../../InvMenu-4.0" />
       <path value="$PROJECT_DIR$/../../Math-stable" />
       <path value="$PROJECT_DIR$/../../EconomyAPI" />
+      <path value="$PROJECT_DIR$/../../PocketMine-MP-stable" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

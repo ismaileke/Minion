@@ -20,7 +20,7 @@ class MinionListener implements Listener {
     public function onMinionPlace (PlayerInteractEvent $event) : void {
         $player = $event->getPlayer();
         $item = $event->getItem();
-        $player->sendPopup("Block: " . $event->getBlock()->getId() . ":" . $event->getBlock()->getMeta());
+        $player->sendPopup("Block: " . $event->getBlock()->getIdInfo()->getBlockId() . ":" . $event->getBlock()->getMeta());
         $blockPos = $event->getBlock()->getPosition();
         if ($item->getId() == ItemIds::NETHER_STAR and $item->getNamedTag()->getTag("uniqueID") !== null) {
             $type = $item->getNamedTag()->getString("type");
